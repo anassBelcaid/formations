@@ -1,0 +1,73 @@
+\documentclass{beamer}
+\usetheme{ensam}
+\usepackage{pgfplots}
+\usepackage{subcaption}
+\usepackage{acronym}
+\usepackage{csvsimple}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{amsmath}
+\usepackage {algorithmic}
+\usepackage{algorithm}
+\usepackage{eqparbox}
+\usepackage[font=scriptsize]{caption}
+\usetikzlibrary{bayesnet,positioning,calc}
+\tikzstyle{obs} = [latent,fill=lightBlue]
+\tikzstyle{default}=[draw=sexyRed,thick,rounded corners,text width=0.5in,font=\scriptsize,align=center]
+\usepgfplotslibrary{colorbrewer}
+\definecolor{ForestGreen}{RGB}{34,139,34}
+\newcommand{\comment}[1]{\textcolor{ForestGreen}{#1}}
+%algorithmic comment
+\renewcommand\algorithmiccomment[1]{%
+  \hfill\comment{\#\scriptsize\eqparbox{COMMENT}{#1}}%
+}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\title{Introduction to OOP with Python}
+\author{\underline{Formation Python}}
+\institute{\small  ENSAF-UEMF} 
+
+%tikz bayesian theme
+\usetikzlibrary{bayesnet,positioning,calc}
+\tikzstyle{obs} = [latent,fill=lightBlue]
+\tikzstyle{default}=[draw=sexyRed,thick,rounded corners,text width=0.5in,font=\scriptsize,align=center]
+\DeclareMathOperator{\argmin}{argmin}
+
+\pgfplotsset{every tick label/.append style={font=\tiny}}
+
+
+\begin{document}
+\maketitle
+
+%{{{ Table of contents
+\begin{frame}
+\tableofcontents
+\end{frame}
+%}}}
+% Introduction {{{ %
+\section{Why OOP}
+\begin{frame}[t]
+  \frametitle{Why OOP}
+  \begin{block}{Problème simple}
+    Une banque possède un fichier contenant les informations de ces clients.
+    Votre tache, si vous l'accepter, consiste a lire ces clients puis les
+    afficher selon un ordre croissant des noms.
+  \end{block}
+
+  \begin{figure}[htpb]
+  \begin{center}
+  \begin{tikzpicture}[scale=1, transform shape]
+    \node[rounded corners, thick, draw, sexyRed] (proc){\small Approche  procédurale} ;
+  \end{tikzpicture}
+  \end{center}
+  \end{figure}
+  
+\end{frame}
+
+
+% Soluiton procedurale {{{ %
+% }}} Soluiton procedurale %
+% }}} Introduction %
+
+
+\end{document}
