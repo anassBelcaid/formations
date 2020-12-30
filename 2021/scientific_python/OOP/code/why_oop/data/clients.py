@@ -1,4 +1,3 @@
-import datetime
 import pandas as pd
 import numpy as np
 from random import randint, choice
@@ -18,11 +17,11 @@ def generate_client():
     """
     global counter_name
 
-    name = "Client_" + str(counter_name)
+    name = "Client_" + str(counter_name).rjust(2,'0')
     counter_name += 1
 
     #generate the date
-    date = datetime.date(randint(2000, 2020), randint(1,12), randint(1,30))
+    date = randint(2000, 2020)
 
     #country
     town  = choice(towns)
