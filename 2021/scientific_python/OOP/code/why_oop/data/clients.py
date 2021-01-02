@@ -55,6 +55,9 @@ if __name__ == "__main__":
     ds.to_csv("clients.csv", index=False)
 
 
+    #for latex
+    ds.iloc[:10].to_latex("clients.tex")
+
 
 
 
