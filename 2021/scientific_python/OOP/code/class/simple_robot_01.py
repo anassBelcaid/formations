@@ -1,11 +1,18 @@
 """
-Créer une class Robot avec des attributs
+Create a Robot with the given attributs:
 
-- name
-- x
-- y
+    - Id
+    - X
+    - Y
 
-Ce qu'il faut garder comme lesson est la nécessité d'utiliser u
-un constructeur.
+Add some useful functions
+
+   - Getters (getX, getY)
+   - change Position 
+   - Distance to a given robot
+    
+    Have fun!!!
 """
+
+
 
