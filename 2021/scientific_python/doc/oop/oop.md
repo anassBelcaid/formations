@@ -508,12 +508,465 @@ R.setX(8)
 R.setY(-1)
 
 print("R position is ({},{})".format(R.getX(), R.getY()))
+```
 
 ## Special methods ##
   <a name='specialMethods'></a> 
 
+
+Another cool concept of **OOP** is the possibility to overload the [data Mode](https://docs.python.org/3/reference/datamodel.html) in order to simplify the syntax of our new created structure.
+
+Let's reconsider the example of our vanilla *Robot* class. Imagine we want now,
+to print its state to **file stream**. We could write a method such as:
+
+```python
+def print(self):
+  """
+  method to print the current Robot
+  """
+  print(f"Robot at ({self.getX()},{self.getY()})")
+```
+
+And inorder to use this method, we will call it as follow:
+
+```python
+R = Robot(3, 4)
+R.print()
+```
+
+Imagine now that we are printing in a **file** instead of the standard output.
+How, we will need *another* method in order to print the same content into the
+new file.
+
+> It will be much easier, if python could now how to convert our object into a
+**string**, and then write its content using any useful methods such as:
+  - print
+  - write
+
+
+Luckily, `Python` implements this data model and offer a set of useful hidden
+methods that could be implicitly called by a given operator. For example in
+order to convert an object into a **string**, python looks for the
+implementation of a special methods called `__str__(self)`. Let's try is out:
+
+
+```python
+  def __str__(self):
+    """
+    method to convert the current object
+    into a string
+    """
+
+    return "({:2.f}, {:.2f})".format(self.getX(), self.getY())
+```
+
+Now, we could use our object in function that accept string.
+
+```python
+
+R = Robot(1,3)
+
+#will print (1.00, 3.00)
+print(R)
+
+
+#same into a file
+with open("file.txt", "w") as F:
+  #write the content of R into the file 
+  F.write(R)
+```
+
+Here is a list of those useful functions
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-5nj1{border-color:inherit;font-family:"Lucida Console", Monaco, monospace !important;;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky"><span style="font-weight:bold">Name</span></th>
+    <th class="tg-0pky"><span style="font-weight:bold">Effect</span></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-5nj1">__init__</td>
+    <td class="tg-0pky">Create an object</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">__del__</td>
+    <td class="tg-0pky">Called when an object is destroyed</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">__repr__ </td>
+    <td class="tg-0pky">Called to get an representation similar to str</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">__str__</td>
+    <td class="tg-0lax">String convertion of an object</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">__lt__</td>
+    <td class="tg-0lax">to compare two object <span style="font-weight:bold">x &lt; y</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">__gt__</td>
+    <td class="tg-0lax">to compare two objects <span style="font-weight:bold">x&gt;y</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">__le__</td>
+    <td class="tg-0lax">Compare two objects <span style="font-weight:bold">x&lt;= y</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">__ge__</td>
+    <td class="tg-0lax">Compare two objects <span style="font-weight:bold">x&gt;= y</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">__eq__</td>
+    <td class="tg-0lax">Compare two objects <span style="font-weight:bold">x== y</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">__hash__</td>
+    <td class="tg-0lax">Custom hash value for the object</td>
+  </tr>
+</tbody>
+</table>
+
+
+### Exercise ###
+
+Our goal is to read a set of Box defined by their length $$l$$, breadth $$b$$
+and height $$h$$. The goal is print those boxes in an ascending order of their
+**volume**. So
+
+1. Create a Custom class ``Box`` with three attributes $$(l, b, h)$$.
+2. Implement the `computeVolume()` function.
+3. Implement the `__str__` and `__repr__` to print a box like `Box[l, b, h],
+   Vol=volume`
+4. Overload the $$<$$ operator to compare those objects by **volume**.
+5.Suppose now, that we want to keep only Boxes with different volumes.
+   i.e. If two boxes share the same volume, we discard one of them.
+
+
 ## Inheritance
   <a name='inheritance'></a> 
 
+[**Inheritance**](https://en.wikipedia.org/wiki/Inheritance) is the second major fundamental of **OOP**. It allows for fast
+prototyping and code reuse. Generally, if we want to solve a given problem, most
+probably, we could use **predefined objects** that are close to our solution. It
+will be much easier to customize those objects to our need rather than creating
+a full object from scratch. This enters in the well known concept of 
+
+> Do not [Reinvent the wheel](https://en.wikipedia.org/wiki/Reinventing_the_wheel)
+
+
+For example, Suppose now that we want to see our robot with cheerful **colors**.
+It will be **cumbersome** to rewrite the class `Robot` from scratch. Especially,
+if the new robots share the `same structure` but simply add a color attribute. 
+
+Fortunately, We could create a new class by **inheriting** all the aspect of a
+given class (called **base class**). In *Python*, we could use the following
+syntax:
+
+
+```python
+class ColeredRobot(Robot):
+  """
+  Observe here that we specified a Robot in parentheses
+  """
+```
+
+With this alone declaration, we didn't **add** anything to the existing class,
+and we could use `ColoredRobot` as replacement for the `Robot` class. 
+
+But we are interested in **extending** this class by adding a color attribute
+defined in the [**RGB**](https://en.wikipedia.org/wiki/RGB_color_model). First
+thing to do is define that in **constructor**.
+
+```python
+def __init__(self, x, y, R, G, B):
+  """
+  Constructor with all the fields
+  """
+
+  #Call for the base class constructor
+  super().__init__(x,y)
+
+  #Create the other fields
+  self.R = R
+  self.G = G
+  self.B = B
+```
+
+Here we must pay careful attention to the line `super().__init__(x,y)`. It will
+call for the **constructor** for the base class which is `Robot`.
+
+If we print a **Colored Robot**, we will still have a simple printing of the
+$$(x,y)$$ position but not the colored fields `(R, G, B)`. We need to change our
+`__str__` function also to consider the additional fields.
+
+
+
+```python
+
+def __str__(self):
+  """
+  Define a string representation of our class
+  """
+
+  #first we get the representation of the base class
+  R = super().__str__()
+
+  #Now we add the color information
+  return R + "[color]({},{},{})".format(self.R, self.G, self.B)
+```
+Here, also we remark the use of `super().__str__()` to call for the base class
+representation. Otherwise we will write down the full implementation from
+scratch.
+
+
+### Exercise ###
+
+You are given two classes, `Person` and `Student`, where **Person** is the base
+class and **Student** is the derived class. You are given the complete code for
+**Person** and the declaration for the **Student** class. Your task is to
+complete the **Student** class by writing the following:
+
+1. A Student class constructor, which has 4 parameter
+  - A string *firstName*.
+  - A string *LastName*
+  - An integer *idNumber*
+  - An list of integers to store the *scores*
+
+2. A method `calculate` that return a `char` representing its mean according to
+   the current scale:
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-2poh{border-color:inherit;font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif !important;;text-align:center;
+  vertical-align:top}
+.tg .tg-hsiw{background-color:#fffe65;border-color:#333333;
+  font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif !important;;text-align:center;vertical-align:top}
+.tg .tg-mpez{border-color:inherit;font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif !important;;font-size:14px;
+  text-align:center;vertical-align:top}
+</style>
+<table class="tg" style="undefined;table-layout: fixed; width: 261px">
+<colgroup>
+<col style="width: 95px">
+<col style="width: 166px">
+</colgroup>
+<thead>
+  <tr>
+    <th class="tg-hsiw"><span style="font-weight:bold">Letter</span><br></th>
+    <th class="tg-hsiw"><span style="font-weight:bold">Average</span></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-2poh">O</td>
+    <td class="tg-2poh">90 &lt;= a &lt;= 100<br></td>
+  </tr>
+  <tr>
+    <td class="tg-2poh">E</td>
+    <td class="tg-2poh">80 &lt;= a &lt; 90<br></td>
+  </tr>
+  <tr>
+    <td class="tg-2poh">A</td>
+    <td class="tg-2poh">70 &lt;= a &lt; 80<br></td>
+  </tr>
+  <tr>
+    <td class="tg-2poh">P</td>
+    <td class="tg-2poh">55 &lt;= a &lt; 70<br></td>
+  </tr>
+  <tr>
+    <td class="tg-2poh">D</td>
+    <td class="tg-2poh">40 &lt;= a &lt; 55<br></td>
+  </tr>
+  <tr>
+    <td class="tg-2poh">T</td>
+    <td class="tg-2poh">a &lt; 40<br></td>
+  </tr>
+</tbody>
+</table>
+
+</center>
+
+
+
 ## Application
   <a name='Application'></a> 
+
+[Turtle](https://docs.python.org/3/library/turtle.html) is graphical implementation of our **Robot**. It has already all the fields that we used and a bunch of additional useful fields.
+
+Let's consider a simple example, where our Robot (now called a `turtle`) that
+will move in a 4 directions to create a simple rectangle.
+
+
+```python
+"""
+Simple script to draw a rectangle
+"""
+
+import turtle as T
+
+
+if __name__ == "__main__":
+
+    #Creating a simple turtle
+    L = 200   # length of the rectangle
+
+
+    #Create a turtle
+    t = T.Turtle(shape='turtle')
+
+    #Change the property of the pen
+    t.pensize(2)
+
+    #Draw four lines
+    for _ in range(4):
+        t.forward(L)
+
+        #change angle by 90 degress
+        t.left(90)
+        
+
+    #Exit the sceen on click
+    T.exitonclick()
+```
+
+
+<center>
+<img src="/assets/rectangle.png" width="150" height="150">      
+</center>
+
+Here is an explanation for the main components of this program:
+
+- `t = T.Turtle(shap='turtle')` will create a Turtle with a specified shape.
+- `t.pensize(2)`: will change the width of the drawing pen.
+- `t.forward(L)`: Will advance the turtle by a lenght of $$L$$.
+- `t.left(90)`: will turn the Turtle by 90 **degrees** left.
+
+
+> For a list of useful function, check this brief [reference](https://perso.limsi.fr/pointal/_media/python:turtle:turtleref.pdf)
+
+Our goal now, is to create a smart **Turtle** that could draw complex
+**shapes**. We will use the concept of **inheritance** to get all the attributs
+of the **Turtle** and we will add our own methods.
+
+### SmartTurtle ###
+
+- Create a class `SmartTurle` that inherite from the base class
+**turtle.Turtle**.
+
+- Add a constructor that pass all of its argument to the base constructor.
+- Fix a random color for this turtle ( see module `random` for random number
+generation)
+-  Set the speed of the turtle as the max allowed speed.
+-  Make the pen size as **2**.
+
+
+### Drawing Rectangles ###
+
+- Add a method called `rectangle( L)` that make the agent draw a rectangle
+of lenght $$L$$.
+- Using this method create the following figure:
+
+<center>
+<img src="/assets/rectangle_serie.png" width="150" height="150">      
+</center>
+
+### Drawing polygons ###
+
+- Create a method called `polygon(L, n)`  that create a polygon of lenght $$L$$
+with $$n$$ faces. (For example the `polygon(L,3)` will create a **Triangle** and `polygon(L,4)` will creae a square).
+
+- Use this function to repreduce the following figure:
+
+<center>
+<img src="/assets/polygones.png" width="150" height="150">      
+</center>
+
+
+### Circles ###
+
+The function `circle` could be used to draw circles. It has the following
+syntax:
+
+```python
+  t.circle(radius, extent, steps)
+```
+
+where:
+
+- radius : The radius of the circle.
+- extent  : The angle of the Drawn arc.
+- steps   : Number of points to use.
+
+
+- Create a method for your inherited class called `coloredBall(R)` to draw a
+colored ball with radius $$R$$ as shown in the figure:
+
+
+<center>
+<img src="/assets/colored_ball.png" width="200" height="200">      
+</center>
+
+Now, we could use the method **circle** to create a simple flower.
+
+- Add a method `petal(L)` to create a flower petal as shown in the figure. Thik
+to combine two arcs with extent $$\dfrac{\pi}{4}$$:
+
+
+<center>
+<img src="/assets/petal.png" width="200" height="200">      
+</center>
+
+
+- Using this function, make the Turtle draw a `flower` by specifying its lenght
+and number of petals. The figure shows those flowers with differents number of
+petals.
+
+<center>
+<img src="/assets/flowers.png" width="80%" height="200">      
+</center>
+
+
+## Sierpinsky Triangle ##
+
+Now, we will combine inheritance and **recurence** to create the classical [**Sierpinsky Triangle**](https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle) show in the figure:
+
+
+
+<center>
+<img src="/assets/sierpensky.png" width="90%" height="150">      
+</center>
+
+1. In order to start write a simple function `Sierpensky(N)` that draws a filled
+triangle of length $$L$$ (figure left).
+2. From the figure, extract a **recursive** relation between a triangle and the
+   one on its **left**.
+3. Now modify the `Sierpensky(L, order)` to take an additional order with
+   represent the order of decomposition in the triangle.
+
+4. Change your program to produce the content of the figure.
+
+### H Fractal ###
+your challenge now (if you accept it), is to use the power of recurrence and
+your knowledge on the Turtle world to produce the following **H fractal**.
+
+
+
+<center>
+<img src="/assets/H_fractal.png" width="90%" height="150">      
+</center>
