@@ -8,8 +8,8 @@ using **python**.
 
 I was enntrusted to teach the following sections.
 
-- [ ] Introduction to OOP
-- [ ] The `Turtle` word and functions.
+- [x] Introduction to OOP
+- [x] The `Turtle` word and functions.
 - [ ] **OS** interfaces using 
   - os
   - sys
@@ -19,20 +19,20 @@ I was enntrusted to teach the following sections.
 
 ## Introduction OOP ##
 
-- [ ] Importance of OOP.
-- [ ] Basic class.
-- [ ] Adding methods
-- [ ] Encapsulation
-- [ ] Inheritance.
-- [ ] Polymorphisme.
-* [ ] Real application.
+- [x] Importance of OOP.
+- [x] Basic class.
+- [x] Adding methods
+- [x] Encapsulation
+- [x] Inheritance.
+- [ ] _Polymorphisme_.
+* [x] Real application.
 
 ## Turtle World ##
 
-- [ ] Simple example.
-- [ ] For loops
-- [ ] Function advantage
-- [ ] Rerurrence and Fractals.
+- [x] Simple example.
+- [x] For loops
+- [x] Function advantage
+- [x] Rerurrence and Fractals.
 
 ## Os interface ##
 - [ ] Manipulating simple files and folders.
