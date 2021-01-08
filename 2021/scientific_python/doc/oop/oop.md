@@ -613,6 +613,22 @@ Here is a list of those useful functions
     <td class="tg-0lax">String convertion of an object</td>
   </tr>
   <tr>
+    <td class="tg-0lax">__add__</td>
+    <td class="tg-0lax"> Add two objects </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">__sub__</td>
+    <td class="tg-0lax"> Substract two objects </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">__mul__</td>
+    <td class="tg-0lax"> Objects multiplication </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">__truediv__</td>
+    <td class="tg-0lax"> Objects Division </td>
+  </tr>
+  <tr>
     <td class="tg-0lax">__lt__</td>
     <td class="tg-0lax">to compare two object <span style="font-weight:bold">x &lt; y</span></td>
   </tr>
@@ -653,6 +669,52 @@ and height $$h$$. The goal is print those boxes in an ascending order of their
 4. Overload the $$<$$ operator to compare those objects by **volume**.
 5.Suppose now, that we want to keep only Boxes with different volumes.
    i.e. If two boxes share the same volume, we discard one of them.
+
+
+
+### Challenge ###
+
+For this challenge, you are given two **complex** numbers, and yo uhave to **print** the result of their addition, substraction, multiplication, division and modulus operations.
+
+> The real and imaginary precision part should be correct up to two decimal
+places.
+
+**Input format**
+
+Two lines representing the real and imaginary part of each number separated by
+a space.
+
+**Output format**
+
+For two complex numbers $$C$$ and $$D$$, the output should be in the following
+seuence on separate lines.
+
+- C + D
+- C - D
+- CD
+- C/D
+- mod(C)
+- mod(D)
+
+**Sample Input**
+
+```shell
+2 1
+5 6
+```
+
+
+**Sample Output**
+
+```shell
+7.00+7.00i
+-3.00-5.00i
+4.00+17.00i
+0.26-0.11i
+2.24+0.00i
+7.81+0.00i
+```
+
 
 
 ## Inheritance
