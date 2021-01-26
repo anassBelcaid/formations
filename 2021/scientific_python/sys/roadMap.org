@@ -1,0 +1,56 @@
+* Course on Python Os and Sys
+
+** The `Os` module
+*** TODO Introduction
+    - [ ] Importing the module.
+    - [ ] Printing the system name.
+*** TODO Basic functions
+    - [X] Getting the current working directory
+    - [X] Printing the content with `listdir`
+    - [X] Loop using `os.walk`
+      - [X] `os.path.isfile`
+      - [X] `os.path.isfolder`
+      - [X] `os.chdir`
+      - [X] `os.sep`
+      - [X] `os.walk`
+    - [X] Create a nested structure from clients.
+      - [X] Create the structure
+
+    - [X] Remove directories.
+      - [X] `os.rmdir`
+      - [X] Problem recursive
+      - [X] use `shutil.rmtree`
+
+    - [X] Application **Search in Apps**
+
+** TODO The `Sys` module
+   - [X] get system Informations
+    - [X] `sys.version_info`
+   - [X] Recursion Infor
+      - [X] `recursion limit`
+      - [X] `change the limit`
+   - [X] Getting the system argument
+      - [X] Show exit
+   - [X] Reading and writing
+      - [X] sys.stdin
+      - [X] sys.stdout
+      - [X] Redirecting the system in
+   - [X] Gettin a list of installed modules
+   - [X] Investigating the path
+         - [X] Showing the path
+         - [X] Adding to the path
+
+
+
+** Using args with `argparse`
+*** TODO Introduction
+   - [ ] Need to change the program
+   - [ ] Show a visual with Percolation
+
+*** TODO Tutorial
+    - [ ] Import argparse and process
+    - [ ] Show the help
+    - [ ] Add a single argument
+    - [ ] Specify a type for an argument
+    - [ ] Specify a default value
+    - [ ] Limit the allowed values
